@@ -4,6 +4,8 @@ const refs = {
   timerId: null,
 };
 
+refs.btnStop.disabled = true;
+
 const getRandomHexColor = () => {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -16,9 +18,13 @@ refs.btnStart.addEventListener('click', () => {
     document.body.style.backgroundColor = newColor;
     console.log(newColor);
   }, 1000);
+  refs.btnStart.disabled = true;
+  refs.btnStop.disabled = false;
 });
 
 refs.btnStop.addEventListener('click', () => {
   clearInterval(refs.timerId);
+  refs.btnStart.disabled = false;
+  refs.btnStop.disabled = true;
   console.log('TimerId has stopped');
 });
